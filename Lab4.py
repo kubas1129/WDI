@@ -15,7 +15,6 @@ def silniaRek(x):
         return 1 
     else:
         x *= silniaRek(x-1)
-    #print(x)
     return x
     
 def silniaIter(x):
@@ -27,8 +26,7 @@ def silniaIter(x):
         return 1    
     wynik = 1
     for i in range(x):
-        #print(wynik)
-        wynik *= (i+2)
+        wynik *= (i+1)
     return wynik
     
 
@@ -45,7 +43,7 @@ def fibonacciIter(n):
     fib = 0
     f1 = 0
     f2 = 1
-    for i in range(n):
+    for i in range(n-1):
         if(n == 0):
             return 0
         elif(n == 1):
@@ -53,10 +51,28 @@ def fibonacciIter(n):
         else:
             fib = f1 + f2
             f1 = f2
-            f2=fib
+            f2 = fib
     return fib
+
+def dwumianNewtona(n,k):
+    return int(silniaIter(n)/(silniaIter(k) * silniaIter(n-k)))
     
-    
+
+def pascalTriangle(n):
+    if(n < 0):
+        return
+    elif(n <= 1):
+        pascalTriangle(n-1)
+        print((n + 1) * "1 ")
+        return
+    else:
+        pascalTriangle(n - 1)
+        print("1 ", end='')
+        for i in range(n-1):
+            print(str(dwumianNewtona(n,i+1)) + " ", end='')
+        print("1", end='')
+        print()
+        return
         
     
 def main():
@@ -70,7 +86,9 @@ def main():
     end = time.time()
     print("Iteracyjny czas: " + str(end - start))    
     
-    print("FibRek: " + str(fibonacciRek(4)))
-    print("FibIter: " + str(fibonacciIter(2)))
-    
+    print("FibRek: " + str(fibonacciRek(6)))
+    print("FibIter: " + str(fibonacciIter(4)))
+
+    pascalTriangle(6)
+
 main()
