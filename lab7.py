@@ -28,25 +28,32 @@ def primeEratostenes(n):
     
 
 
-def removePrimeNumber(lista,pierwsze):
+def removePrimeNumber(lista):
     lista.sort()
-    checkingNumber=0
+    checkingNumber=lista[0]
     count=0
     wynikowa = ""
-    for e : lista:
-        if(checkingNumber = e):
-            count+=1
+    for i in range(len(lista)-1):
+        if(lista[i] == 1):
+            wynikowa += "1 "
+            count = 1
+            continue
+        if(checkingNumber == lista[i]):
+            count += 1
         else:
             if(count % 2 != 0):
-                if(e in primeEratostenes(lista[len(lista)-1]): #Tutaj popraw
-                    wynikowa += count * str(e) + " "
+                if (not(lista[i] in primeEratostenes(lista[len(lista) - 1]))):
+                    wynikowa += count * (str(checkingNumber) + " ")
             else:
-                wynikowa += count * str(e) + " "
-            checkingNumber=e
-            count=1
-    print(lista)
-    
+                wynikowa += count * (str(checkingNumber) + " ")
+            checkingNumber = lista[i]
+            count = 1
+    return wynikowa
+
+
+
 def main():
-    removePrimeNumber([5,1,7,4,5,6,12,3])
+    print(primeEratostenes(100))
+    print(removePrimeNumber([5,7,4,18,3,7,5,1,2,12,7,13]))
     
 main()
