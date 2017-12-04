@@ -29,11 +29,16 @@ def sortByInsert(numbers):
 
 
 def bubbleSort(numbers):
-
+    for k in numbers:
+        for i in range(len(numbers)-1):
+            if(numbers[i] > numbers[i+1]):
+                numbers[i],numbers[i+1]=numbers[i+1],numbers[i]
+    return numbers
 
 
 def main():
     #print(sortByChoosed(initTable(100)))
     #print(sortByInsert([100,20,1,87,76,2,9,34,22]))
+    #print(bubbleSort(initTable(100)))
 
 main()
