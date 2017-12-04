@@ -36,9 +36,34 @@ def bubbleSort(numbers):
     return numbers
 
 
+
+def divide(s,k,lista):
+    p = k #ostatni element z ktorym porownujemy dana liste
+    i=0
+    j=0
+    for e in range(k+1):
+        if(lista[i] < lista[p]):
+            lista[i],lista[j]=lista[j],lista[i]
+            j += 1
+        i += 1
+    lista[p],lista[j]=lista[j],lista[p]
+    return j
+
+def quickSort(s,k,lista):
+    pivot = divide(s,k,lista)
+    if(pivot == k):
+        return lista
+    quickSort(s,pivot,lista)
+    quickSort(pivot+1,k,lista)
+    return lista
+
+
+
 def main():
+    toSort = [1,5,8,7,15,4,3]
     #print(sortByChoosed(initTable(100)))
     #print(sortByInsert([100,20,1,87,76,2,9,34,22]))
     #print(bubbleSort(initTable(100)))
+    print(quickSort(0,len(toSort)-1,toSort))
 
 main()
